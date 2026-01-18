@@ -12,6 +12,25 @@
       <div id="hud"></div>
       <div id="overlay"></div>
     </div>
-    <script type="module" src="./src/main.ts"></script>
+    <script type="module">
+      const showModuleError = (error) => {
+        const notice = document.createElement("div");
+        notice.style.cssText =
+          "position:fixed;inset:0;display:flex;align-items:center;justify-content:center;" +
+          "padding:24px;font:16px/1.5 system-ui;background:#0b0b0b;color:#f8f8f8;text-align:center;";
+        notice.innerHTML =
+          "<div style=\"max-width:640px\">" +
+          "<h1 style=\"margin:0 0 12px;font-size:24px;\">Startup failed</h1>" +
+          "<p style=\"margin:0 0 12px;\">The game entrypoint is TypeScript and must be served by Vite. " +
+          "If you see a MIME type error like <code>video/mp2t</code>, run <code>npm run dev</code> " +
+          "or build with <code>npm run build</code> and preview with <code>npm run preview</code>.</p>" +
+          "<pre style=\"white-space:pre-wrap;color:#ffb4b4;\">" +
+          (error?.message || String(error)) +
+          "</pre></div>";
+        document.body.appendChild(notice);
+      };
+
+      import("./src/main.ts").catch(showModuleError);
+    </script>
   </body>
 </html>
