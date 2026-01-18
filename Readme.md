@@ -11,6 +11,11 @@ npm run dev
 
 Open the printed local URL (default `http://localhost:5173`).
 
+> **Note:** Don’t open `index.html` directly or serve the repo with a generic static server.
+> The entrypoint is TypeScript, and browsers will reject it with a MIME type error
+> like `video/mp2t`. Always use the Vite dev server (or run `npm run build` and
+> `npm run preview` for the compiled output).
+
 ## Controls
 
 ### Gamepad (Xbox / Backbone)
